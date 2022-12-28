@@ -18,11 +18,15 @@ class RegisterForm(forms.ModelForm):
         password = forms.CharField(label="Password", widget=forms.PasswordInput)
 
     def clean(self):
+        username = self.cleaned_data.get('username')
+        email = self.cleaned_data.get('email')
         password = self.cleaned_data.get('password')
         error_list = dict()
         
         Validation.validate_password(password=password, field_name='password', error_list=error_list)
-        
+        Validation.validate_unique_username(username=username, field_name='username', error_list=error_list)
+        Validation.validate_unique_email(email=email, field_name='email', error_list=error_list)
+
         if error_list is not None:
             for error in error_list:
                 error_message = error_list[error]

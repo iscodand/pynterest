@@ -5,9 +5,6 @@ from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 
 
-# TO-DO: fix register user (is not registering correctly)
-# TO-DO: add error messages (is not registering correctly)
-
 def register(request: HttpRequest) -> HttpResponse:
 
     if request.method == 'POST':
@@ -29,8 +26,6 @@ def register(request: HttpRequest) -> HttpResponse:
 
     return render(request, 'users/register.html', context)
 
-
-# TO-DO: fix authentication
 
 def login(request: HttpRequest) -> HttpResponse:
     form = LoginForm()
