@@ -14,7 +14,6 @@ class UserViewsTestCase(TestCase):
         self.first_name = 'first'
         self.last_name = 'last'
         self.password = '12345678'
-        self.is_active = True
 
     def test_if_register_view_is_registering_user_correctly(self):
         response = self.client.post(reverse('register'), data={
@@ -23,7 +22,6 @@ class UserViewsTestCase(TestCase):
             'first_name': self.first_name,
             'last_name': self.last_name,
             'password': self.password,
-            'is_active': self.is_active
         })
         
         users = User.objects.all()
