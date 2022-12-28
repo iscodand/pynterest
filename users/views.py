@@ -9,7 +9,6 @@ from django.contrib.auth.decorators import login_required
 # TO-DO: add error messages (is not registering correctly)
 
 def register(request: HttpRequest) -> HttpResponse:
-    form = RegisterForm()
 
     if request.method == 'POST':
         form = RegisterForm(request.POST)
@@ -24,8 +23,8 @@ def register(request: HttpRequest) -> HttpResponse:
         else:
             for value in form.errors.values():
                 messages.error(request, f'{value}')
-            return redirect('register')
 
+    form = RegisterForm()
     context = {'form': form}
 
     return render(request, 'users/register.html', context)

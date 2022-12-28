@@ -36,4 +36,4 @@ class UserViewsTestCase(TestCase):
             'password': '12345678'
         }, follow=True)
         
-        self.assertTrue(response.context['user'].is_active)
+        self.assertTrue(response.context['request'].user.is_authenticated)
